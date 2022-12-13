@@ -1,5 +1,5 @@
 class ProductManager{
-
+    static id = 0
     constructor(title, description, price, thumbail, code, stock){
         ProductManager.id +=1
         this.products = []
@@ -13,7 +13,7 @@ class ProductManager{
 
     addProduct(){
         if(this.code!==this.code){
-            this.products.push({title,description,price,thumbail,code,stock,id})
+            this.products.push([{title,description,price,thumbail,code,stock,id}])
         }
     }
 
@@ -23,9 +23,12 @@ class ProductManager{
     }
 
     getProductById(){
-
+        const EncontrarPorId = this.products.find(elem => elem.id=== ProductManager.id)
     }
-
-
 }
 
+const producto1 = new ProductManager;
+
+producto1.addProduct("Fideos","Los mejores carbohidratos para los deportistas", 150, "fideos.jpg", 1, 36);
+
+producto1.getProducts()
