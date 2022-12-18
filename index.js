@@ -1,34 +1,49 @@
 class ProductManager{
-    static id = 0
-    constructor(title, description, price, thumbail, code, stock){
-        ProductManager.id +=1
+    constructor(){
         this.products = []
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.thumbail = thumbail;
-        this.code = code;
-        this.stock = stock;
+        this.product = Product
     }
 
-    addProduct(){
-        if(this.code!==this.code){
-            this.products.push([{title,description,price,thumbail,code,stock,id}])
-        }
+    addProduct(product){
+        if(this.getProducts().find((p)=> p.code == product.code)) return console.log(`Product with code ${product.code} already exist!`)
+        else product.id = this.getProducts().length + 1; this.products.push(product)
     }
-
     getProducts(){
-
-        return this.products
+        return this.products;
     }
 
-    getProductById(){
-        const EncontrarPorId = this.products.find(elem => elem.id=== ProductManager.id)
+    getProductsbyId(id){
+        let producto = this.getProducts().find(p=>id == p.id)
+        if(producto !== undefined) return producto
+        throw "El producto con ID " + id + "no existe entre los disponibles"
     }
 }
 
-const producto1 = new ProductManager;
 
-producto1.addProduct("Fideos","Los mejores carbohidratos para los deportistas", 150, "fideos.jpg", 1, 36);
 
-producto1.getProducts()
+class Product extends ProductManager{
+    constructor(title, description, price, thumbnail, code, stock){
+        super();
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.thumbnail = thumbnail;
+        this.code = code;
+        this.stock = stock;
+    }
+}
+
+const newProduct = new ProductManager();
+
+const producto1 = {
+    title: "Fideos",    
+    description: "Alimentos especialmente para deportistas de alto rendimiento",
+    price:200,
+    thumbnail: "fideos.png",
+    code: 39,
+    stock:30,
+}
+
+newProduct.addProduct(producto1)
+
+console.log(newProduct.getProducts());
