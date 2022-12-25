@@ -47,3 +47,5 @@ const producto1 = {
 newProduct.addProduct(producto1)
 
 console.log(newProduct.getProducts());
+
+console.log(producto1);
